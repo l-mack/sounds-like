@@ -1,0 +1,30 @@
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+
+    h1 {
+        font-family: 'Oswald', sans-serif;
+        font-size: 5rem;
+        letter-spacing: 1.5rem;
+        text-transform: uppercase;
+        padding: 20px;
+        border: 5px solid #FF0080;
+    }
+
+    h3 {
+        font-family: 'Oswald', sans-serif;
+        font-size: 2rem;
+        letter-spacing: 1.5rem;
+        padding-bottom: 25px;
+        padding-top: 10px;
+    }
+   
+}
+
+
+
+
+
