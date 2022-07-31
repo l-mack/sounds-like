@@ -6,10 +6,7 @@ const url = 'http://ws.audioscrobbler.com/2.0/'
 
 
 export async function getSimilarArtist (artistSearch) {
-        await axios.get(`${url}/?method=artist.getsimilar&artist=${artistSearch}&api_key=${apiKey}&format=json`, 
+        return await axios.get(`${url}/?method=artist.getsimilar&artist=${artistSearch}&api_key=${apiKey}&format=json`, 
         
         { params: { limit: 5 } })
-        .then(resp => {
-            console.log('response data', resp.data)
-        })    
 }
