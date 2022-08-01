@@ -2,6 +2,7 @@ import { useState, useEffect, useRef} from 'react';
 
 import Header from './components/header/header.component.jsx'
 import SearchBox from './components/search-box/search-box.component.jsx';
+import ArtistDisplay from './components/artist-display/artist-display.component.jsx';
 
 import { getSimilarArtist } from './services/get-artists.js'
 
@@ -43,16 +44,38 @@ const App = () => {
       event.preventDefault()
       setSearchField('')
 
-
     }
+
+    const artistList = similarArtists.map((artist, i)=> {
+      return (
+        <li key={i} className='simArtistCard'>
+        <h3 className='simArtistName'>{artist.name}</h3>
+    </li>
+      )
+    })
 
   return (
     <div className='App'>
       <div className='wrapper'>
         <Header />
-        <SearchBox submitHandler={handleSubmit} onChangeHandler={onSearchChange} artistSearch={artistSearch}/>
+
+        <main className='resultsFlex'>
+
+          <div className='searchResultCont'>
+            <SearchBox submitHandler={handleSubmit} onChangeHandler={onSearchChange} artistSearch={artistSearch}/>
+          </div>
+          
+          <div className='simArtistContainer'>
+            <ArtistDisplay artistList={artistList} />
+          </div>
+
+          
+        </main>
+        
       </div>
     </div>
+    
+    
   )
 
 

@@ -1,0 +1,17 @@
+li h3 {
+    font-family: 'Amatic SC', cursive;
+    font-size: 2.5rem;
+    letter-spacing: .5rem;
+    font-weight: 900;
+    border-radius: 10px;
+    border: 1.5px dotted #FF0080;
+    padding: 10px;
+    margin: 5px;
+}
+
+.simArtistContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
