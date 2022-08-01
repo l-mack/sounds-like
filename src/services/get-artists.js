@@ -10,3 +10,9 @@ export async function getSimilarArtist (artistSearch) {
         
         { params: { limit: 5 } })
 }
+
+export async function getArtistDetails (artistSearch) {
+
+        return await axios.get(`${url}?method=artist.getinfo&artist=${artistSearch}&api_key=${apiKey}&format=json`)
+
+}
