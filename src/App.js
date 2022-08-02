@@ -9,10 +9,12 @@ import { getSimilarArtist, getArtistDetails } from './services/get-artists.js'
 const App = () => {
 
   const [searchField, setSearchField] = useState('')
-  const artistSearch = searchField
   const [similarArtists, setSimilarArtists] = useState([])
   const [artist, setArtist] = useState('')
   const [tags, setTags] = useState([])
+
+  let artistSearch = ''
+
 
   const onSearchChange = (event) => {
     const searchFieldString = event.target.value.toLocaleLowerCase()
@@ -22,10 +24,11 @@ const App = () => {
   }
 
   useEffect(()=> {
+
+    console.log('artist search useEffect', artistSearch)
     if (artistSearch === '') {
       return 
     }
-
     getSimilarArtist(artistSearch).then(resp => {
       console.log('similar arist array', resp.data.similarartists.artist)
       setSimilarArtists(resp.data.similarartists.artist)
@@ -36,6 +39,8 @@ const App = () => {
       setArtist(resp.data.artist.name)
       setTags(resp.data.artist.tags.tag)
 
+      setSearchField('')
+
     })
     
     }, [artistSearch])
@@ -45,7 +50,10 @@ const App = () => {
 
   const handleSubmit = (event) => {
       event.preventDefault()
-      setSearchField('')
+
+      artistSearch = searchField
+
+      console.log('aristSearch handle submit', artistSearch)
 
     }
 
@@ -63,7 +71,7 @@ const App = () => {
       
         <Header />
 
-        <SearchBox submitHandler={handleSubmit} onChangeHandler={onSearchChange} artistSearch={artistSearch}/>
+        <SearchBox submitHandler={handleSubmit} onChangeHandler={onSearchChange} searchField={searchField}/>
 
         <main className='resultsFlex'>
               <ArtistDisplay artistList={artistList} artist={artist} tags={tags}/>

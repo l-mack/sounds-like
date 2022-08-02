@@ -1,11 +1,11 @@
 import './search-box.styles.scss'
 
-const SearchBox = ({submitHandler, onChangeHandler, artistSearch}) => {
+const SearchBox = ({ submitHandler, onChangeHandler, searchField }) => {
 
       return (
 
         <section className='formSection'>
-        <form onSubmit={submitHandler}>
+              <form onSubmit={submitHandler} action="#">
             <label 
                 className='search-label' 
                 for='artist-search'> 
@@ -17,13 +17,14 @@ const SearchBox = ({submitHandler, onChangeHandler, artistSearch}) => {
                 className='search-input' 
                 placeholder='e.g. Nirvana' 
                 onChange={onChangeHandler}
-                value={artistSearch}>
+                value={searchField}>
             </input>
-            <input 
+            <button 
                 type="submit" 
                 className='submit-button' 
                 value="enter">
-            </input>
+                Enter
+            </button>
         </form>
     </section>
       
