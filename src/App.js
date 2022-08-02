@@ -24,6 +24,7 @@ const App = () => {
     if (artistSearch === '') {
       return 
     }
+    
     getSimilarArtist(artistSearch).then(resp => {
       console.log('similar arist array', resp.data.similarartists.artist)
       setSimilarArtists(resp.data.similarartists.artist)
@@ -33,41 +34,30 @@ const App = () => {
       console.log('artist details', resp.data.artist)
       setArtist(resp.data.artist.name)
       setTags(resp.data.artist.tags.tag)
-
     })
-    
+
     }, [artistSearch])
 
   const handleSubmit = (event) => {
       event.preventDefault()
-
       setAristSearch(searchField)
-
       setSearchField('')
-
-
     }
-
-    const artistList = similarArtists.map((artist, i) => {
-      return (
-        <li key={i} className='simArtistCard'>
-        <h3 className='simArtistName'>{artist.name}</h3>
-    </li>
-      )
-    })
 
   return (
     <div className='App'>
       <div className='wrapper'>
-      
         <Header />
-
-        <SearchBox submitHandler={handleSubmit} onChangeHandler={onSearchChange} searchField={searchField}/>
-
         <main>
-              <ArtistDisplay artistList={artistList} artist={artist} tags={tags}/>
+          <SearchBox 
+            submitHandler={handleSubmit} 
+            onChangeHandler={onSearchChange} 
+            searchField={searchField}/>
+          <ArtistDisplay 
+            similarArtists={similarArtists} 
+            artist={artist} 
+            tags={tags}/>       
         </main>
-        
       </div>
     </div>
     

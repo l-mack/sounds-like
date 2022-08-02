@@ -1,9 +1,16 @@
 import './artist-display.styles.scss'
 
-const ArtistDisplay = ({artistList, artist, tags}) => {
+const ArtistDisplay = ({ similarArtists, artist, tags }) => {
+
+    const artistList = similarArtists.map((artist, i) => {
+        return (
+          <li key={i} className='simArtistCard'>
+          <h3 className='simArtistName'>{artist.name}</h3>
+      </li>
+        )
+      })
 
     const taglist = tags.map((item, index) => {
-
         return (
             <div>
                 <div className='tagFlex1'>
@@ -18,11 +25,7 @@ const ArtistDisplay = ({artistList, artist, tags}) => {
                 <>
                     { index < 3 ? <p className='after'></p> : '' }
                 </>
-                
-
             </div>
-
-            
         )
       })
 
@@ -37,11 +40,7 @@ const ArtistDisplay = ({artistList, artist, tags}) => {
                 <ul className='simArtistContainer'>{taglist}</ul>
                 </div>
                 <div className='simArtistMatchCont'>{artistList}</div>
-            
-
         </div>
-        
-        
     )
 
 }
