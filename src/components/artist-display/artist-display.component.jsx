@@ -26,17 +26,21 @@ const ArtistDisplay = ({artistList, artist, tags}) => {
         )
       })
 
-    return(
-        <div className='searchResultCont'>
-            <>
-                { !artist ? '' : <h3 className='artistDetailsName'>{artist}</h3> }
-            </>
+    return (
+        <div className='resultsFlex'>
+            <div className='searchResultCont'>
+                <>
+                    { !artist ? '' : <h3 className='artistDetailsName'>{artist}</h3> }
+                </>
+                
+
+                <ul className='simArtistContainer'>{taglist}</ul>
+                </div>
+                <div className='simArtistMatchCont'>{artistList}</div>
             
 
-            <ul className='simArtistContainer'>{taglist}</ul>
-            <div className='simArtistMatchCont'>{artistList}</div>
-        
         </div>
+        
         
     )
 

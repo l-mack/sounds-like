@@ -1,4 +1,4 @@
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 import Header from './components/header/header.component.jsx'
 import SearchBox from './components/search-box/search-box.component.jsx';
@@ -12,20 +12,15 @@ const App = () => {
   const [similarArtists, setSimilarArtists] = useState([])
   const [artist, setArtist] = useState('')
   const [tags, setTags] = useState([])
-
-  let artistSearch = ''
-
+  const [artistSearch, setAristSearch] = useState('')
 
   const onSearchChange = (event) => {
     const searchFieldString = event.target.value.toLocaleLowerCase()
     setSearchField(searchFieldString)
-
-    console.log('searchfield', searchField)
   }
 
   useEffect(()=> {
 
-    console.log('artist search useEffect', artistSearch)
     if (artistSearch === '') {
       return 
     }
@@ -39,21 +34,17 @@ const App = () => {
       setArtist(resp.data.artist.name)
       setTags(resp.data.artist.tags.tag)
 
-      setSearchField('')
-
     })
     
     }, [artistSearch])
 
-    console.log('details', artist, tags)
-
-
   const handleSubmit = (event) => {
       event.preventDefault()
 
-      artistSearch = searchField
+      setAristSearch(searchField)
 
-      console.log('aristSearch handle submit', artistSearch)
+      setSearchField('')
+
 
     }
 
@@ -73,7 +64,7 @@ const App = () => {
 
         <SearchBox submitHandler={handleSubmit} onChangeHandler={onSearchChange} searchField={searchField}/>
 
-        <main className='resultsFlex'>
+        <main>
               <ArtistDisplay artistList={artistList} artist={artist} tags={tags}/>
         </main>
         
