@@ -6,13 +6,23 @@ const url = 'http://ws.audioscrobbler.com/2.0/'
 
 
 export async function getSimilarArtist (artistSearch) {
-        return await axios.get(`${url}/?method=artist.getsimilar&artist=${artistSearch}&api_key=${apiKey}&format=json`, 
-        
-        { params: { limit: 5 } })
+        try {
+                return await axios.get(`${url}/?method=artist.getsimilar&artist=${artistSearch}&api_key=${apiKey}&format=json`,
+
+                        { params: { limit: 5 } })
+        } catch (err) {
+                console.log('catch error', err)
+        }
+
 }
 
 export async function getArtistDetails (artistSearch) {
+        try {
+                return await axios.get(`${url}?method=artist.getinfo&artist=${artistSearch}&api_key=${apiKey}&format=json`)
+        }
 
-        return await axios.get(`${url}?method=artist.getinfo&artist=${artistSearch}&api_key=${apiKey}&format=json`)
+        catch (err) {
+                console.log(err)
+        }
 
 }

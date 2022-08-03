@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
 import Header from './components/header/header.component.jsx'
-import SearchBox from './components/search-box/search-box.component.jsx';
-import ArtistDisplay from './components/artist-display/artist-display.component.jsx';
+import SearchBox from './components/search-box/search-box.component.jsx'
+import ArtistDisplay from './components/artist-display/artist-display.component.jsx'
+import Footer from './components/footer/footer.component.jsx'
 
 import { getSimilarArtist, getArtistDetails } from './services/get-artists.js'
 
@@ -13,6 +14,7 @@ const App = () => {
   const [artist, setArtist] = useState('')
   const [tags, setTags] = useState([])
   const [artistSearch, setAristSearch] = useState('')
+  const [errorState, setErrorState] = useState('')
 
   const onSearchChange = (event) => {
     const searchFieldString = event.target.value.toLocaleLowerCase()
@@ -26,14 +28,29 @@ const App = () => {
     }
     
     getSimilarArtist(artistSearch).then(resp => {
-      console.log('similar arist array', resp.data.similarartists.artist)
-      setSimilarArtists(resp.data.similarartists.artist)
+      try {
+        const similarArtistsArray = resp.data.similarartists.artist
+        setSimilarArtists(similarArtistsArray)
+      } catch (err) {
+        setErrorState('Oops!  Something went wrong.  Please try again.')
+        setSimilarArtists([])
+      }
+      
     })
 
     getArtistDetails(artistSearch).then(resp => {
-      console.log('artist details', resp.data.artist)
-      setArtist(resp.data.artist.name)
-      setTags(resp.data.artist.tags.tag)
+      try {
+        const artistDetails = resp.data.artist
+        if (artistDetails === undefined) setErrorState('Oops!  Something went wrong.  Please try again.')
+        setArtist(artistDetails.name)
+        setTags(artistDetails.tags.tag)
+
+      } catch (err) {
+        setErrorState('Oops!  Something went wrong.  Please try again.')
+        setArtist('')
+        setTags([])
+      }
+     
     })
 
     }, [artistSearch])
@@ -42,6 +59,7 @@ const App = () => {
       event.preventDefault()
       setAristSearch(searchField)
       setSearchField('')
+      setErrorState('')
     }
 
   return (
@@ -56,15 +74,14 @@ const App = () => {
           <ArtistDisplay 
             similarArtists={similarArtists} 
             artist={artist} 
-            tags={tags}/>       
+            tags={tags}
+            errorState={errorState}/>
         </main>
+        <Footer />
       </div>
     </div>
     
-    
   )
-
-
 }
 
-export default App;
+export default App

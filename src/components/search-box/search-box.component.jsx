@@ -3,7 +3,7 @@ import './search-box.styles.scss'
 const SearchBox = ({ submitHandler, onChangeHandler, searchField }) => {
 
     return (
-        <section className='formSection'>
+        <section>
             <form onSubmit={submitHandler} action="#">
                 <label 
                     className='search-label' 
