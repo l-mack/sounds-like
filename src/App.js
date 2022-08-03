@@ -33,7 +33,6 @@ const App = () => {
 
     setTimeout(() => {
       setLoading(false);
-      console.log('loading')
     }, 2500)
     
     getSimilarArtist(artistSearch).then(resp => {

@@ -1,4 +1,4 @@
-import { v4 as v4 } from 'uuid'
+import { v4 } from 'uuid'
 
 import './artist-display.styles.scss'
 
