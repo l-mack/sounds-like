@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 import Header from './components/header/header.component.jsx'
 import SearchBox from './components/search-box/search-box.component.jsx'
+import Preloader from './components/preloader/preloader.component.jsx'
 import ArtistDisplay from './components/artist-display/artist-display.component.jsx'
 import Footer from './components/footer/footer.component.jsx'
 
@@ -15,6 +16,7 @@ const App = () => {
   const [tags, setTags] = useState([])
   const [artistSearch, setAristSearch] = useState('')
   const [errorState, setErrorState] = useState('')
+  const [loading, setLoading] = useState('')
 
   const onSearchChange = (event) => {
     const searchFieldString = event.target.value.toLocaleLowerCase()
@@ -26,6 +28,13 @@ const App = () => {
     if (artistSearch === '') {
       return 
     }
+
+    setLoading(true)
+
+    setTimeout(() => {
+      setLoading(false);
+      console.log('loading')
+    }, 2500)
     
     getSimilarArtist(artistSearch).then(resp => {
       try {
@@ -35,10 +44,10 @@ const App = () => {
         setErrorState('Oops!  Something went wrong.  Please try again.')
         setSimilarArtists([])
       }
-      
     })
 
     getArtistDetails(artistSearch).then(resp => {
+      
       try {
         const artistDetails = resp.data.artist
         if (artistDetails === undefined) setErrorState('Oops!  Something went wrong.  Please try again.')
@@ -50,7 +59,6 @@ const App = () => {
         setArtist('')
         setTags([])
       }
-     
     })
 
     }, [artistSearch])
@@ -68,14 +76,16 @@ const App = () => {
         <Header />
         <main>
           <SearchBox 
-            submitHandler={handleSubmit} 
-            onChangeHandler={onSearchChange} 
+            submitHandler={ handleSubmit } 
+            onChangeHandler={ onSearchChange } 
             searchField={searchField}/>
-          <ArtistDisplay 
-            similarArtists={similarArtists} 
-            artist={artist} 
-            tags={tags}
-            errorState={errorState}/>
+          <> 
+            { loading === true ? <Preloader /> : <ArtistDisplay
+              similarArtists={ similarArtists }
+              artist={ artist }
+              tags={ tags }
+              errorState={ errorState } /> }
+          </> 
         </main>
         <Footer />
       </div>

@@ -43,7 +43,7 @@ const ArtistDisplay = ({ similarArtists, artist, tags, errorState }) => {
                 { errorState === '' ? <ul className='sim-artist-container'>{taglist}</ul> : ''}
             </div>
                 { errorState === '' && artistList.length !== 0 ? <div>{artistList}</div> 
-                : (artistList.length === 0 && artist !== '' && errorState === '' ? <h3 className='no-similar-artists'>Sorry, no similar artits found.</h3> : '')}
+                : (artistList.length === 0 && artist !== '' && errorState === '' ? <h3 className='no-similar-artists'>Sorry,<br></br>no similar artits found.</h3> : '')}
         </div>
     )
 
