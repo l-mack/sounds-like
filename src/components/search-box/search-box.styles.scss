@@ -21,6 +21,9 @@ form {
     .search-input {
         border: none;
         border-bottom: 2px solid black;
+        outline: none;
+        input:focus {
+            outline: none !important;
     }
     
     .submit-button {
@@ -34,9 +37,6 @@ form {
         font-weight: 700;
         text-decoration: none;
         text-align: center;
-        outline: none;
-        input:focus {
-            outline: none !important;
         }
         cursor: pointer;
         margin-left: 10px;
