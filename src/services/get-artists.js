@@ -2,7 +2,7 @@ import axios from "axios"
 
 const apiKey = '3ad87c5b4402ae7e0e0ff19da288d7d2'
 
-const url = 'http://ws.audioscrobbler.com/2.0/'
+const url = 'https://ws.audioscrobbler.com/2.0/'
 
 
 export async function getSimilarArtist (artistSearch) {
