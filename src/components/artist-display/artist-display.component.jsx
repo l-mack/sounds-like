@@ -32,8 +32,8 @@ const ArtistDisplay = ({ similarArtists, artist, tags, errorState }) => {
       })
 
     return (
-        <div className='results-flex'>
-            <div>
+        <section className='results-flex'>
+            <div className='artist-details'>
                 <>
                     { errorState !== '' ? <h3 className='error-state'>{errorState}</h3> 
                     : (!artist ? '': <h3 className='artist-details-name'>{artist}</h3>) }
@@ -42,9 +42,9 @@ const ArtistDisplay = ({ similarArtists, artist, tags, errorState }) => {
                 
                 { errorState === '' ? <ul className='sim-artist-container'>{taglist}</ul> : ''}
             </div>
-                { errorState === '' && artistList.length !== 0 ? <div>{artistList}</div> 
+                { errorState === '' && artistList.length !== 0 ? < div className='similar-artists'>{artistList}</div> 
                 : (artistList.length === 0 && artist !== '' && errorState === '' ? <h3 className='no-similar-artists'>Sorry,<br></br>no similar artits found.</h3> : '')}
-        </div>
+        </section>
     )
 
 }

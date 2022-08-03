@@ -47,7 +47,6 @@ const App = () => {
     })
 
     getArtistDetails(artistSearch).then(resp => {
-      
       try {
         const artistDetails = resp.data.artist
         if (artistDetails === undefined) setErrorState('Oops!  Something went wrong.  Please try again.')

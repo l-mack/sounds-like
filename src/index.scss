@@ -22,14 +22,17 @@ h3 {
 }
 
 .wrapper {
-    width: 70%; 
+    width: 100%;
     max-width: 1300px;
     margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 
 }
 
 /* text styling */
 html {
     font-size: 62.5%;
-    /* text-align: center; */
 }
